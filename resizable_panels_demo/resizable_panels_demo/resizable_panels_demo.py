@@ -41,6 +41,9 @@ def panels():
                 rx.container(lorem()),
                 background_color=rx.color("gray", 10),
                 min_size=30,
+                on_collapse=rx.toast("Panel collapsed"),
+                on_expand=rx.toast("Panel expanded"),
+                on_resize=lambda size: rx.toast(f"Panel resized to {size}%"),
             ),
             direction="horizontal",
         ),
@@ -49,7 +52,7 @@ def panels():
     )
 
 
-def index() -> rx.Component:
+def index() -> tuple:
     return rx.box(
         panels(),
         height="100vh",

@@ -4,27 +4,30 @@
 
 from types import SimpleNamespace
 from typing import Any, Literal
+
 import reflex as rx
 
-
 LiteralDirection = Literal["horizontal", "vertical"]
-
-lib_name = "react-resizable-panels@^2.0.19"
 
 
 class ResizablePanels(rx.Component):
     """ResizablePanels component."""
 
     # The React library to wrap.
-    library = lib_name
+    library = "react-resizable-panels@^2.1.7"
 
 
 class PanelRoot(rx.el.Div):
+    """Root element for PanelGroup and Panel components."""
+
     def add_style(self) -> dict[str, Any] | None:
+        """Add style to the root element."""
         return {"width": "100%", "height": "100%"}
 
 
 class PanelGroup(ResizablePanels):
+    """PanelGroup component."""
+
     tag = "PanelGroup"
 
     alias = "ResizablePanelGroup"
@@ -42,6 +45,8 @@ class PanelGroup(ResizablePanels):
 
 
 class Panel(ResizablePanels):
+    """Panel component."""
+
     tag = "Panel"
 
     alias = "ResizablePanel"
@@ -62,24 +67,27 @@ class Panel(ResizablePanels):
     min_size: rx.Var[int]
 
     # Event handlers triggered when the panel is collapsed
-    on_collapse: rx.EventHandler[lambda: []]
+    on_collapse: rx.EventHandler[rx.event.no_args_event_spec()]
 
     # Event handlers triggered when the panel is expanded
-    on_expand: rx.EventHandler[lambda: []]
+    on_expand: rx.EventHandler[rx.event.no_args_event_spec()]
 
     # Event handlers triggered when the panel is resized
-    on_resize: rx.EventHandler[lambda e0: [e0]]
+    on_resize: rx.EventHandler[rx.event.passthrough_event_spec(int)]
 
     # Order of the panel within the group
     order: rx.Var[int]
 
 
 class PanelResizeHandle(ResizablePanels):
+    """PanelResizeHandle component."""
+
     tag = "PanelResizeHandle"
 
     alias = "ResizablePanelResizeHandle"
 
     def add_style(self) -> dict[str, Any] | None:
+        """Add style to the root element."""
         return {
             "width": "3px",
             "background": rx.color("accent", 9),
@@ -87,6 +95,8 @@ class PanelResizeHandle(ResizablePanels):
 
 
 class ResizablePanelsNamespace(SimpleNamespace):
+    """Namespace for ResizablePanels components."""
+
     group = staticmethod(PanelGroup.create)
     panel = staticmethod(Panel.create)
     handle = staticmethod(PanelResizeHandle.create)

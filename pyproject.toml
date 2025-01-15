@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "reflex-resizable-panels"
-version = "0.0.1a1"
+version = "0.0.2"
 description = "Reflex custom component resizable-panels"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [{ name = "", email = "YOUREMAIL@domain.com" }]
 keywords = ["reflex","reflex-custom-components"]
 
-dependencies = ["reflex>=0.4.2"]
+dependencies = ["reflex>=0.7.0"]
 
 classifiers = ["Development Status :: 4 - Beta"]
 
