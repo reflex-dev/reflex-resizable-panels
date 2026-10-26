@@ -40,7 +40,7 @@ class PanelGroup(ResizablePanels):
 
     on_layout: rx.EventHandler[lambda e0: [e0]]
 
-    # not sure how to make this one works
+    # not sure how to make this one work
     # storage: rx.Var[Any]
 
 
